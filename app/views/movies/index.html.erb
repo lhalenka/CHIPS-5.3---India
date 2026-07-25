@@ -10,7 +10,7 @@
       <%= check_box_tag "ratings[#{rating}]", "1", @ratings_to_show.include?(rating), class: 'form-check-input', id: "ratings_#{rating}" %>
       <%= label_tag "ratings[#{rating}]", rating, class: 'form-check-label' %>
     </div>
-
+ <% end %>
   <div>
     <label class="form-label me-2" for="sort_by">Sort by:</label>
     <%= select_tag :sort_by,
