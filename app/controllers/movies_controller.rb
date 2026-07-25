@@ -7,11 +7,20 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.all_ratings
   
     if params[:ratings].present?
+      session[:ratings] = params[:ratings]
       @ratings_to_show = params[:ratings].keys
+    elsif session[:ratings].present?
+      @ratings_to_show = session[:ratings].keys
     else
      @ratings_to_show = @all_ratings 
     end
-    @sort_by = params[:sort_by]
+
+    if params[:sort_by].present?
+      session[:sort_by] = params[:sort_by]
+      @sort_by = params[:sort_by]
+    else
+      @sort_by = session[:sort_by]
+    end
     @movies = Movie.with_ratings(@ratings_to_show, @sort_by)
     end
 
